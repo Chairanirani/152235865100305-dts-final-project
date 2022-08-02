@@ -10,6 +10,9 @@ import HomeJuz from './containers/HomeJuz';
 import JuzList from './containers/JuzList';
 import Navbar from './containers/Navbar';
 import Footer from './containers/Footer';
+import SurahList from './containers/SurahList';
+import DetailSurah from './containers/DetailSurah';
+import { Box } from '@mui/material';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,8 +24,11 @@ root.render(
         <Route path='login' element={<SignIn />} />
         <Route path='juz' element={<JuzList />} /> 
         <Route path='choosenJuz/:plan' element={<HomeJuz />} />
+        <Route path='surah' element={<SurahList />} />
+        <Route path='ayat' element={<SurahList />} />
+        <Route path='detailSurah/:plan' element={<DetailSurah />} />
       </Routes>
-    
+    <Footer />
     </BrowserRouter>
     
   </React.StrictMode>

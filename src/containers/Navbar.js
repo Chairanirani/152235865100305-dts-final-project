@@ -137,11 +137,20 @@ const Navbar = (prop) => {
                 </NavLink>
             ))}
           </Box>
-          {prop.num ? (<ReactAudioPlayer 
-                            src={`https://cdn.islamic.network/quran/audio/64/ar.alafasy/${prop.num}.mp3`}
-                            autoPlay
-                            controls 
-                        />) : null}
+          {
+            prop.num ? (<ReactAudioPlayer 
+                src={`https://cdn.islamic.network/quran/audio/64/ar.alafasy/${prop.num}.mp3`}
+                autoPlay
+                controls 
+            />) : null
+          }
+          {
+            prop.numSurah ? (<ReactAudioPlayer 
+                src={`https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${prop.numSurah}.mp3`}
+                autoPlay
+                controls 
+            />) : null
+          }
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

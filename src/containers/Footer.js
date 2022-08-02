@@ -5,33 +5,17 @@ import ReactAudioPlayer from 'react-audio-player';
 const Footer = (prop) => {
     return (
         <div className="footer">
-        <Box px={{ xs: 3, sm: 1 }} py={{ xs:5, sm: 1 }} bgcolor="black" color="white">
+        <Box px={{ xs: 3, sm: 1 }} py={{ xs:5, sm: 1 }} bgcolor="#398486" color="white">
             <Container maxWidth="lg">
-                <Grid container spacing={5}>
-                    <Grid item xs={12} sm={4}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
                         <Box pb={{ xs: 1, sm: 1 }}>
-                            Audio and Subtitles
+                            &reg; 2022 Final-Project-152235865100305 - Destryana Rahmi Chairani
                         </Box>
                         
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Box pb={{ xs: 1, sm: 1 }}>
-                           {prop.num}
-                        </Box>
-                        
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                    <ReactAudioPlayer 
-                            src="https://cdn.islamic.network/quran/audio/64/ar.alafasy/262.mp3"
-                            controls 
-                        />
-                        
-                    </Grid>
-                </Grid>
-                
-                <Box pt={{ xs: 3, sm: 4 }}>
-                    &reg; 2022 Movies, All right Reserved
-                </Box>
+                    
+                </Grid>                
             </Container>
         </Box>
         </div>

@@ -65,9 +65,7 @@ const IsiAccordionJuz = (prop) => {
                 ))
                 // <Typography>{prop.numberSurah}</Typography>
             }
-            <Grid container spacing={1} sx={{ borderBottom: '1px solid black' }}>
-                <Footer num={footers.nums} key={5} />
-            </Grid>
+            
             <Navbar num={footers.nums} />
         </AccordionDetails>
     )
