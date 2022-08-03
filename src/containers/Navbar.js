@@ -11,8 +11,12 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import { NavLink } from 'react-router-dom';
 import ReactAudioPlayer from 'react-audio-player';
+import Button from '@mui/material/Button';
+import { auth, logout } from "../configs/Firebase.js";
+import { useNavigate } from "react-router-dom";
 
 const pages = [
+    { text: 'Home', link: '/' },
     { text: 'Juz', link: '/juz' },
     { text: 'Surah', link: '/surah' },
     { text: 'Ayat', link: '/ayat' }
@@ -21,7 +25,7 @@ const settings = [
   {text: 'Profile', link: '/profile'}, 
   {text: 'Account', link: '/account'}, 
   {text: 'Dashboard', link: '/dashboard'},
-  {text: 'Logout', link: '/login'}
+  {text: 'Logout', link: '/logout'}
 ];
 
 const Navbar = (prop) => {
@@ -42,6 +46,17 @@ const Navbar = (prop) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try{
+      await logout();
+      navigate('/signin');
+    }catch(err){
+      console.log(err);
+    }
+  }
 
   return (
     <AppBar position="fixed">
@@ -154,9 +169,11 @@ const Navbar = (prop) => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                {prop.userName ? (<Typography sx={{ fontSize: '10px', color: 'white' }}>{`Welcome ${prop.userName}`}</Typography>) : null }
+                
               </IconButton>
             </Tooltip>
+            
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -173,15 +190,17 @@ const Navbar = (prop) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              
-              {settings.map((setting) => (
+              {/* {settings.map((setting) => (
                 <NavLink 
                     key={settings.text}
                     to={setting.link}
                 >
                     <Typography textAlign="center">{setting.text}</Typography>
                 </NavLink>
-              ))}
+              ))} */}
+              <Button onClick={handleLogout}>
+                Logout
+              </Button>
             </Menu>
           </Box>
         </Toolbar>
