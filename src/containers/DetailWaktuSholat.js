@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
 import React from "react";
 import axios from "axios";
 
@@ -23,7 +22,7 @@ const DetailWaktuSholat = (prop) => {
         }
 
         fetchTime();
-    }, []);
+    }, [prop.idCity]);
     
     return ( prop.idCity ? (
         <>

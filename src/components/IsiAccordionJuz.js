@@ -3,10 +3,8 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
-import IsiAccordionJuzEn from '../components/IsiAccordionJuzEn';
 import { Button, Grid } from '@mui/material';
 
-import Footer from '../containers/Footer';
 import Navbar from '../containers/Navbar';
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
@@ -36,7 +34,7 @@ const IsiAccordionJuz = (prop) => {
         }
 
         fetchJuz();
-    }, []);
+    }, [prop.parameterJuz]);
     
     return (
         <AccordionDetails>
@@ -44,17 +42,14 @@ const IsiAccordionJuz = (prop) => {
                 juzs.data
                 .filter(x => x.surah.number === prop.numberSurah)
                 .map(x => (
-                    <Grid container spacing={1} sx={{ borderBottom: '1px solid black' }}>
+                    <Grid container spacing={1} sx={{ borderBottom: '1px solid black' }} key={x.number}>
                         <Grid item xs={6} md={2} sx={{ marginTop: '10px' }}>
                             <Button variant='outlined' onClick={()=> setFooters({nums: x.numberInSurah})}>PLAY</Button>
-                        {/* <ReactAudioPlayer 
-                            src="https://cdn.islamic.network/quran/audio/64/ar.alafasy/262.mp3"
-                            controls 
-                        /> */}
+                        
                         </Grid>
                         <Grid item xs={6} md={9}>
                             <Typography sx={{ fontSize: '30px', textAlign: 'right', padding: '10px', margin: '5px' }}>{x.text}</Typography>
-                            {/* <IsiAccordionJuzEn surahNumber={x.surah.number} parameterJuz={prop.parameterJuz} numberInSurah={x.numberInSurah} /> */}
+                            
                         </Grid>
                         <Grid item xs={6} md={1} >
                         <Typography sx={{ fontSize: '20px', textAlign: 'center', padding: '10px', margin: '5px', backgroundColor: '#ededed', borderRadius: '50%' }}> {(x.numberInSurah).toLocaleString('ar-u-nu-arab')}</Typography>
@@ -63,7 +58,6 @@ const IsiAccordionJuz = (prop) => {
                     </Grid>
                     
                 ))
-                // <Typography>{prop.numberSurah}</Typography>
             }
             
             <Navbar num={footers.nums} />

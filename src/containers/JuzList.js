@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import JuzCard from "../components/JuzCard";
 import Navbar from "./Navbar";
-import { auth, db, logout } from "../configs/Firebase.js";
+import { auth, db } from "../configs/Firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -14,7 +14,7 @@ const JuzList = () => {
                         21,22,23,24,25,26,27,28,29,30
                       ];
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const [name, setName] = useState("");
     const navigate = useNavigate();
     const fetchUserName = async () => {
@@ -44,10 +44,10 @@ const JuzList = () => {
                 flexWrap: 'wrap',
                 justifyContent: 'space-between',
                 mt: 5,
-            }}>
+            }} key={`ab${jumlahJuz[0]}`}>
                     {
                         jumlahJuz.map(jus => 
-                            <JuzCard jus={jus} />
+                            <JuzCard jus={jus} key={jus} />
                         )
                     }
                     

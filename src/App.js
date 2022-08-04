@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import './App.css';
-import { auth, db, logout } from "./configs/Firebase.js";
+import { auth, db } from "./configs/Firebase.js";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Box from '@mui/material/Box';
 import Navbar from './containers/Navbar';
-import { Autocomplete, Button, Grid, Paper, TextField, Typography } from "@mui/material";
+import { Autocomplete, Grid, Paper, TextField, Typography } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import axios from "axios";
 import DetailWaktuSholat from "./containers/DetailWaktuSholat";
 import { Container } from "@mui/system";
 
 function App() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
   const fetchUserName = async () => {

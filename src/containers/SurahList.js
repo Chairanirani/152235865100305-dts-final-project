@@ -7,7 +7,7 @@ import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import Navbar from "./Navbar";
-import { auth, db, logout } from "../configs/Firebase.js";
+import { auth, db } from "../configs/Firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -65,6 +65,25 @@ const Item = styled(Paper)(({ theme }) => ({
   
 
 const SurahList = () => {
+    const [user, loading] = useAuthState(auth);
+    const [name, setName] = useState("");
+    const navigate = useNavigate();
+    const fetchUserName = async () => {
+    try {
+        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+        const doc = await getDocs(q);
+        const data = doc.docs[0].data();
+        setName(data.name);
+    } catch (err) {
+        console.error(err);
+        alert("An error occured while fetching user data");
+    }
+    };
+    useEffect(() => {
+    if (loading) return;
+    if (!user) return navigate("/");
+    fetchUserName();
+    }, [user, loading]);
     
     const [surahs, setSurahs] = React.useState({data: []});
 
@@ -102,25 +121,6 @@ const SurahList = () => {
         }
     }
  
-    const [user, loading, error] = useAuthState(auth);
-    const [name, setName] = useState("");
-    const navigate = useNavigate();
-    const fetchUserName = async () => {
-    try {
-        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-        const doc = await getDocs(q);
-        const data = doc.docs[0].data();
-        setName(data.name);
-    } catch (err) {
-        console.error(err);
-        alert("An error occured while fetching user data");
-    }
-    };
-    useEffect(() => {
-    if (loading) return;
-    if (!user) return navigate("/");
-    fetchUserName();
-    }, [user, loading]);
     
     return (
         <div className="surahList" sx={{ display: 'flex',
@@ -134,9 +134,11 @@ const SurahList = () => {
                 flexGrow: 1, 
                 padding: '100px',
                 margin: '0 auto'
-            }}>
+                }}
+                key={'2'}
+            >
                 
-                <Item>
+                <Item key={'ab'}>
                     <nav aria-label="main mailbox folders">
                     <Search>
                         <SearchIconWrapper>
@@ -152,11 +154,11 @@ const SurahList = () => {
                             {
                                 searchInput.length > 1 ? (
                                     filteredResults.map((x) => (
-                                        <SurahCard number={x.number} name={x.name} enName={x.englishName} place={x.revelationType} meaning={x.englishNameTranslation} jlh={x.numberOfAyahs} />
+                                        <SurahCard number={x.number} name={x.name} enName={x.englishName} place={x.revelationType} meaning={x.englishNameTranslation} jlh={x.numberOfAyahs} key={x.number}/>
                                     ))
                                 ):(
                                     surahs.data.map(x=> (
-                                        <SurahCard number={x.number} name={x.name} enName={x.englishName} place={x.revelationType} meaning={x.englishNameTranslation} jlh={x.numberOfAyahs} />
+                                        <SurahCard number={x.number} name={x.name} enName={x.englishName} place={x.revelationType} meaning={x.englishNameTranslation} jlh={x.numberOfAyahs} key={x.number} />
                                         
                                     ))
                                 )

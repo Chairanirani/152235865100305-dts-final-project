@@ -2,7 +2,7 @@ import { Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 import { styled } from '@mui/material/styles';
 import { Box } from "@mui/system";
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import DetailSurahEn from "./DetailSurahEn";
 import Navbar from '../containers/Navbar';
@@ -47,21 +47,21 @@ export default function DetailSurah() {
 
   return (
     <Box sx={{ flexGrow: 1, padding: '100px' }} >
-        <Item>
+        <Item key={`b${surahs.data3}`}>
             <Typography>
                 {`Surah ${surahs.data3} (${surahs.data2})`}
             </Typography>
         </Item>
-        <Item>
+        <Item key={`c${surahs.data2}`}>
         {
             // console.log(surahs.data.ayahs[0].number)
             surahs.data.map(x=> (
                 
 
-                <Grid container spacing={1} sx={{ borderBottom: '1px solid black' }}>
+                <Grid container spacing={1} sx={{ borderBottom: '1px solid black' }} key={`a${x.number}`}>
                     <Grid item xs={6} md={12} sx={{ marginTop: '10px' }}>
                         <Typography sx={{ fontSize: '30px', textAlign: 'center', padding: '10px', margin: '5px' }}>{x.text}</Typography> 
-                        <DetailSurahEn numberInSurah={x.numberInSurah} numberOfSurah={surahs.data4} />
+                        {/* <DetailSurahEn numberInSurah={x.numberInSurah} numberOfSurah={surahs.data4} /> */}
                     </Grid>
                 </Grid>
             ))

@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
-import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
 import { Paper } from '@mui/material';
@@ -51,10 +50,6 @@ const AccordionSummary = styled((props) => (
   },
 }));
 
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(2),
-  borderTop: '1px solid rgba(0, 0, 0, .125)',
-}));
 
 const HomeJuz = ()=> {
   const [expanded, setExpanded] = React.useState('');
@@ -82,11 +77,12 @@ const HomeJuz = ()=> {
 
             }catch (error) {
                 console.log(error);
+                alert("Please check your chronme setting-->site setting--> Insecure content--> change it to 'Allow' to show API data")
             }
         }
 
         fetchJuz();
-    }, []);
+    }, [parameterJuz]);
 
   
   return (
@@ -100,6 +96,7 @@ const HomeJuz = ()=> {
                     <Accordion 
                         expanded={expanded === `panel${x}`} 
                         onChange={handleChange(`panel${x}`)} 
+                        key={x}
                     >
                         <AccordionSummary 
                             aria-controls={`panel${x}d-content`} 
