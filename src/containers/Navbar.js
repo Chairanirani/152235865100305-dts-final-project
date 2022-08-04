@@ -18,8 +18,7 @@ import { useNavigate } from "react-router-dom";
 const pages = [
     { text: 'Home', link: '/' },
     { text: 'Juz', link: '/juz' },
-    { text: 'Surah', link: '/surah' },
-    { text: 'Ayat', link: '/ayat' }
+    { text: 'Surah', link: '/surah' }
   ];
 const settings = [
   {text: 'Profile', link: '/profile'}, 

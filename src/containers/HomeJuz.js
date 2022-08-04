@@ -79,7 +79,6 @@ const HomeJuz = ()=> {
                     data : fetchedJuz.data.data.ayahs,
                     data2 : fetchedJuz.data.data.surahs
                 });
-                //  console.log(setJuzs);
 
             }catch (error) {
                 console.log(error);
@@ -121,73 +120,13 @@ const HomeJuz = ()=> {
                         </Typography>
                         </AccordionSummary>
                         <IsiAccordionJuz numberSurah = {juzs.data2[x].number} parameterJuz={parameterJuz} />
-                        {/* <AccordionDetails>
-                        {
-                            juzs.data
-                            .filter(x => x.surah.number === 1)
-                            .map(x => (
-                                <Typography>{x.text}</Typography>
-                            ))
-
-                        }
-                        </AccordionDetails> */}
+                        
                     </Accordion>
                 ))
                 
                 
             }
-            <Accordion expanded={expanded === 'panel10'} onChange={handleChange('panel10')} >
-                <AccordionSummary aria-controls="panel10d-content" id="panel10d-header">
-                <Typography key={5}>
-                  {
-                    //  juzs.data2.englishName
-                    Object.keys(juzs.data2)[0]
-                    
-                  } (
-                    {
-                        // juzs.data2.name
-                    }
-                  )
-                </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                {
-                    juzs.data
-                    .filter(x => x.surah.number === 1)
-                    .map(x => (
-                        <Typography>{x.surah.name}</Typography>
-                    ))
-
-                }
-                
-                </AccordionDetails>
-            </Accordion>
-            <Accordion expanded={expanded === 'panel20'} onChange={handleChange('panel20')}>
-                <AccordionSummary aria-controls="panel20d-content" id="panel20d-header">
-                <Typography>Collapsible Group Item #2</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                    sit amet blandit leo lobortis eget.
-                </Typography>
-                </AccordionDetails>
-            </Accordion>
-            <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-                <Typography>Collapsible Group Item #3</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                    sit amet blandit leo lobortis eget.
-                </Typography>
-                </AccordionDetails>
-            </Accordion>
+            
       </Item>
     </Box>
   );

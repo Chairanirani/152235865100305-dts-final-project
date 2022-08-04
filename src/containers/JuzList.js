@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
 import { Box } from "@mui/system";
 import JuzCard from "../components/JuzCard";
 import Navbar from "./Navbar";
@@ -35,31 +34,10 @@ const JuzList = () => {
     fetchUserName();
     }, [user, loading]);
 
-    // const [juzs, setJuzs] = useState([]);
-
-    // useEffect(() => {
-    //     const fetchJuz = async () => {
-            
-    //         try {
-    //             const fetchedJuz = await axios.get(`http://api.alquran.cloud/v1/juz/1/en.asad`);
-    //             setJuzs(fetchedJuz.data.data.ayahs);
-    //             // console.log(setJuzs);
-
-    //         }catch (error) {
-    //             console.log(error);
-    //         }
-    //     }
-
-    //     fetchJuz();
-    // }, []);
     
     return (
         <div className="App" style={{ backgroundImage: 'url("../assets/images/5540822.jpg")', backgroundSize: 'contain' }}>
-                {/* {
-                            juzs.map(jus => (
-                                <h1>{jus.surah.name}</h1>
-                            ))
-                        } */}
+                
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'row',
